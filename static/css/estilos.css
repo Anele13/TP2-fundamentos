@@ -1,0 +1,78 @@
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: rgb(250,250,250);
+	background-color: rgb(244,242,239);
+}
+
+.container {
+	padding: 1rem 2rem;
+}
+
+.form {
+	height: 8rem;
+	width: 100%;
+	text-align: center;
+	padding: 1rem;
+}
+
+.form .form-group {
+	position: absolute;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+}
+
+.form #bnf,
+
+.form #bnf {
+	border: 1px dashed steelblue;
+	border-radius: 1rem;
+	width: 25rem;
+	min-height: 7rem;
+	display: inline-block;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+
+.form #bnf.error {
+	border: 2px dashed rgb(234,46,73);
+}
+
+.form .btn {
+	border: 1px solid rgb(51,55,69);
+	border-radius: 5px;
+	background-color: rgb(51,55,69);
+	color: #FFF;
+	font-weight: bold;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+	position: right;
+	top: 50%;
+	margin-left: 1rem;
+	cursor: pointer;
+	box-shadow: 2px 2px 1px rgb(42,50,63);
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+
+.form .btn:hover {
+	background-color: #FFF;
+	color: rgb(51,55,69);
+
+
+}
+
+#container-diagramas {
+	text-align: center;
+
+}
+#container-diagramas svg {
+	display: block;
+	margin: auto;
+}
