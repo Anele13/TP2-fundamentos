@@ -15,4 +15,4 @@ RUN git clone https://github.com/Anele13/TP2-fundamentos.git
 
 
 
-CMD ["python", "TP1-fundamentos/TP1-fundamentos/app.py"]
+CMD ["python", "TP2-fundamentos/app.py"]
