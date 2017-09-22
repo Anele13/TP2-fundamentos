@@ -7,11 +7,12 @@ RUN apt-get update \
 
 WORKDIR /usr/src/app
 COPY requirements.txt ./
+RUN git clone https://github.com/Anele13/TP2-fundamentos.git
 RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-RUN git clone https://github.com/Anele13/TP2-fundamentos.git
+
 
 
 
