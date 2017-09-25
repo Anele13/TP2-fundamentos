@@ -1,29 +1,27 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="/static/css/estilos.css">
-	<link rel="stylesheet" href="/static/css/style-tree.css">
-	<link rel=stylesheet href="/static/css/railroad-diagrams.css">
-	<title>Trabajo Práctico Nº2 - FTI</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/static/css/estilos.css">
+		<link rel="stylesheet" href="/static/css/style-tree.css">
+		<link rel=stylesheet href="/static/css/railroad-diagrams.css">
+		<title>Trabajo Práctico Nº2 FTI 2017</title>
+	</head>
 
-<body>
-	<div class="container">
-		<form id="form-bnf" class="form">
-			<div class="form-group">
-				<textarea name="bnf" id="bnf" ></textarea>
-				<button class="btn" id="btn-bnf">ProcesareeeeSS</button>
-			</div>
-		</form>
+	<body style="background-color:#FFB74D;">
+		<div class="container">
+			<form id="form-bnf" class="form">
+				<div class="form-group">
+					<textarea name="bnf" id="bnf" ></textarea>
+					<button class="btn" id="btn-bnf">ProcesareeeeSS</button>
+				</div>
+			</form>
+			<div id="container-diagramas"></div>
+		</div>
 
-		<div id="container-diagramas"></div>
+		<script src="/static/js/railroad-diagrams.js"></script>
+		<script src="/static/js/bnf.js"></script>
+	</body>
 
-
-	</div>
-
-	<script src="/static/js/railroad-diagrams.js"></script>
-	<script src="/static/js/bnf-babel.js"></script>
-
-</body>
 </html>
