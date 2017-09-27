@@ -6,7 +6,7 @@
 	    inputBnf = document.getElementById("bnf"),
 	    contenedorDiagramas = document.getElementById("container-diagramas");
 
-	// FUNCION 
+	// FUNCION
 	function btnBnfOnClick(e) {
 		var diagramas = crearDiagramas(inputBnf.value),
 		    results = [],
@@ -36,7 +36,14 @@
 
 	// limpia los espacios innecesarios
 	function normalizar(strBnf) {
-		var replaces = [{ regex: />\s{1,2}</g, replacement: "><" }, { regex: />\s{1,2}"/g, replacement: ">\"" }, { regex: /"\s{1,2}"/g, replacement: "\"\"" }, { regex: /"\s{1,2}</g, replacement: "\"<" }, { regex: />\s::=/g, replacement: ">::=" }, { regex: /::=\s/g, replacement: "::=" }, { regex: /\s\|/g, replacement: "|" }, { regex: /\|\s/g, replacement: "|" }],
+		var replaces = [{ regex: />\s{1,2}</g, replacement: "><" },
+										{ regex: />\s{1,2}"/g, replacement: ">\"" },
+										{ regex: /"\s{1,2}"/g, replacement: "\"\"" },
+										{ regex: /"\s{1,2}</g, replacement: "\"<" },
+										{ regex: />\s::=/g, replacement: ">::=" },
+										{ regex: /::=\s/g, replacement: "::=" },
+										{ regex: /\s\|/g, replacement: "|" },
+										{ regex: /\|\s/g, replacement: "|" }],
 		    length,
 		    str,
 		    i;
@@ -46,7 +53,6 @@
 		for (i = 0; i < length; i++) {
 			str = str.replace(replaces[i].regex, replaces[i].replacement);
 		}
-
 		return str;
 	}
 
@@ -78,20 +84,70 @@
 		return Sequence.apply(undefined, secuencia);
 	}
 
-	// crea el diagrama de sintaxis de la bnf
+
+
+function reconstruir(segunda){
+	var aux=[];
+	var aux2=[];
+	var i;
+	var j=0;
+	if (segunda.includes(">")){
+		aux=segunda.split(">");
+		for (i=0; i<aux.length-1;i++){
+			aux2[i]=aux[i]+">";
+		}
+		return aux2;
+	}
+	else{
+		aux=segunda.split(/([^"]+)/);
+		for (i=0; i<aux.length;i++){
+			if (!(aux[i].includes(String.fromCharCode(34)))){
+				aux2[j]=String.fromCharCode(34)+aux[i]+String.fromCharCode(34);
+				j++;
+			}
+		}
+		return aux2;
+	}
+}
+
+	// crea el diagrama de sintaxis de la bnf recibe una secuencia completa desde ::=
 	function crearDiagrama(exp) {
+		var primera=[];
+		var segunda=[];
+		var tercera=[];
+		var secuencia1=[];
 		var diagrama = [],
 		    choices,
 		    length,
-		    i;
+				i;
 
-		choices = exp.split("|");
-		length = choices.length;
-		for (i = 0; i < length; i++) {
-			diagrama.push(crearSecuencia(choices[i]));
+	if (exp.includes("[")){
+			primera= exp.split("[",1); //este es un arreglo por el split. primera es de long=1
+			length = primera.length;
+			for (i = 0; i < length; i++) {
+				secuencia1.push(crearSecuencia(primera[i]));
+			}
+
+			segunda=exp.split("[");
+			tercera=segunda[1].split("]");
+			segunda=segunda[1].split("]",1);
+			segunda=reconstruir(segunda[0]);
+			aux.push(Skip())
+			for (i = 0; i < segunda.length; i++) {
+				aux.push(crearSecuencia(segunda[i]));
+			}
+			secuencia1.push(Choice.apply(undefined, [0].concat(aux)));
+			secuencia1.push(crearSecuencia(tercera[1]));
+			return Diagram(Sequence.apply(undefined,secuencia1));
 		}
-
-		return Diagram(Choice.apply(undefined, [0].concat(diagrama)));
+		else{
+			choices = exp.split("|");
+			length = choices.length;
+			for (i = 0; i < length; i++) {
+				diagrama.push(crearSecuencia(choices[i]));
+			}
+			return Diagram(Choice.apply(undefined, [0].concat(diagrama)));
+		}
 	}
 
 	// crea los diagramas de sintaxis de cada bnf
