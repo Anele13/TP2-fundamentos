@@ -5,22 +5,30 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="/static/css/estilos.css">
 		<link rel=stylesheet href="/static/css/railroad-diagrams.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<title>Trabajo Práctico Nº2 FTI 2017</title>
 	</head>
 
-	<body style="background-color:#FFB74D;">
+	<body style="background-color:#FF7043">
+		<div class="jumbotron">
+		  <h1 class="display-3">Bienvenido</h1>
+		  <p class="lead">Este sistema permite mostrar diagramas de sintaxis a partir de gramaticas en BNF</p>
+		</div>
+
 		<div class="container">
 			<form id="form-bnf" class="form">
 				<div class="form-group">
 					<textarea name="bnf" id="bnf" ></textarea>
-					<button class="btn" id="btn-bnf">Procesar</button>
-				</div>
+					<button class="btn btn-info" id="btn-bnf">Verificar</button></p>
+					</div>
 			</form>
 			<div id="container-diagramas"></div>
 		</div>
 
-		<script src="/static/js/railroad-diagrams.js"></script>
-		<script src="/static/js/bnf.js"></script>
+		<script src="static/js/railroad-diagrams.js"></script>
+		<script src="static/js/bnf.js"></script>
 	</body>
 
 </html>
