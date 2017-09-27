@@ -112,6 +112,7 @@ function reconstruir(segunda){
 
 	// crea el diagrama de sintaxis de la bnf recibe una secuencia completa desde ::=
 	function crearDiagrama(exp) {
+		var aux=[];
 		var primera=[];
 		var segunda=[];
 		var tercera=[];
@@ -121,12 +122,13 @@ function reconstruir(segunda){
 		    length,
 				i;
 
-	if (exp.includes("[")){
-			primera= exp.split("[",1); //este es un arreglo por el split. primera es de long=1
-			length = primera.length;
-			for (i = 0; i < length; i++) {
-				secuencia1.push(crearSecuencia(primera[i]));
-			}
+			if (exp.includes("[")){
+					primera= exp.split("[",1); //este es un arreglo por el split. primera es de long=1
+					if (primera[0].includes("<")|primera[0].includes(String.fromCharCode(34))){
+						for (i = 0; i < primera.length; i++) {
+							secuencia1.push(crearSecuencia(primera[0]));
+						}
+					}
 
 			segunda=exp.split("[");
 			tercera=segunda[1].split("]");
@@ -137,7 +139,10 @@ function reconstruir(segunda){
 				aux.push(crearSecuencia(segunda[i]));
 			}
 			secuencia1.push(Choice.apply(undefined, [0].concat(aux)));
-			secuencia1.push(crearSecuencia(tercera[1]));
+
+			if ((tercera[1].length)){
+				secuencia1.push(crearSecuencia(tercera[1]));
+			}
 			return Diagram(Sequence.apply(undefined,secuencia1));
 		}
 		else{
@@ -152,7 +157,7 @@ function reconstruir(segunda){
 
 	// crea los diagramas de sintaxis de cada bnf
 	function crearDiagramas(strBnf) {
-		var regex = /^<[^<>"\n\t\v]+>\s?::=\s?(?:(?:"(?:[^<>"\n\t\v])+")|(?:<[^<>"\n\t\v]+>))(?:\s?(?:\|)?\s?(?:"(?:[^<>"\n\t\v])+"|(?:<[^<>"\n\t\v]+>)))*$/gm,
+		var regex = /^<[^<>"\n\t\v]+>\s?::=\s?(?:(?:"(?:[^<>"\n\t\v])+")| (?:<[^<>"\n\t\v]+>))(?:\s?(?:\|)?\s?(?:"(?:[^<>"\n\t\v])+"|(?:<[^<>"\n\t\v]+>)))*$/gm,
 		    diagramas = [],
 		    componente,
 		    bnfs,
@@ -161,7 +166,7 @@ function reconstruir(segunda){
 		    i,
 		    length;
 
-		if (regex.test(strBnf)) {
+		///if (regex.test(strBnf)) {
 			bnfs = strBnf.split("\n");
 			console.log(bnfs);
 			length = bnfs.length;
@@ -174,10 +179,11 @@ function reconstruir(segunda){
 			}
 
 			return diagramas;
-		}
+		//}
 		return [];
 	}
 
 	// EVENTO
 	btnBnf.addEventListener("click", btnBnfOnClick, false);
 })();
+

@@ -7,6 +7,8 @@
 <signo>::="=="|">="|"<="|">"|"<"|"!="
 <tipo>::="char"|"short"|"int"|"long"|"float"|"double"
 
+
+
 //Gramatica if lenguaje C
 
 <if-statement>::="if""("<expresion>")""{"<asignacion>"}"|"if""("<expresion>")""{"<asignacion>"}""else""{"<asignacion>"}"
@@ -21,7 +23,7 @@
 Aclaracion de uso: No incluir espacios en blanco dentro de las gramaticas
 
 
-
+<terminal>::="no terminal"["uno""dos""tres"]
 
 
 
